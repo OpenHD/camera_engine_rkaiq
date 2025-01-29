@@ -13,7 +13,7 @@ set(J2S_SRC
 add_custom_target(
     j2s_preprocess
     COMMAND ${CMAKE_C_COMPILER}
-    ${CMAKE_SOURCE_DIR}/include/iq_parser_v2/RkAiqCalibDbTypesV2.h -E -C -o .temp.h ${ISP_HW_VERSION}
+    ${CMAKE_SOURCE_DIR}/include/iq_parser_v2/RkAiqCalibDbTypesV2.h -E -C -o .temp.h -DISP_HW_V21
     -I${CMAKE_SOURCE_DIR}/
     -I${CMAKE_SOURCE_DIR}/include
     -I${CMAKE_SOURCE_DIR}/include/common
@@ -37,7 +37,7 @@ add_custom_target(
 #########################################################
 add_custom_target(
     parser_tool
-    COMMAND gcc -DJ2S_ENABLE_DESC ${CMAKE_SOURCE_DIR}/tools/iq_check/src/parser.c -o parser ${ISP_HW_VERSION}
+    COMMAND gcc -DJ2S_ENABLE_DESC ${CMAKE_SOURCE_DIR}/tools/iq_check/src/parser.c -o parser -DISP_HW_V21
     -I${CMAKE_SOURCE_DIR}/include/common
     -I${CMAKE_SOURCE_DIR}/
     -I${CMAKE_SOURCE_DIR}/include/uAPI
@@ -57,7 +57,7 @@ add_dependencies(parser_tool j2s_preprocess)
 #########################################################
 add_custom_target(
     j2s_parser
-    COMMAND gcc -DJ2S_ENABLE_DESC -o dump ${J2S_SRC} ${ISP_HW_VERSION}
+    COMMAND gcc -DJ2S_ENABLE_DESC -o dump ${J2S_SRC} -DISP_HW_V21
     ${CMAKE_SOURCE_DIR}/tools/iq_check/src/dump.c
     -I${CMAKE_SOURCE_DIR}/include/common
     -I${CMAKE_SOURCE_DIR}/
