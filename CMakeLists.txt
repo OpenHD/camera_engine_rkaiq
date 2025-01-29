@@ -32,7 +32,7 @@ if (LIBDRM_FOUND)
     add_compile_options(${LIBDRM_CFLAGS})
 endif()
 
-add_compile_options("21")
+add_compile_options("-DISP_HW_V21")
 
 # ----------------------------------------------------------------------------
 # set property to classify library kinds
