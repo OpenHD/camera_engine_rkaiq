@@ -32,7 +32,7 @@ if (LIBDRM_FOUND)
     add_compile_options(${LIBDRM_CFLAGS})
 endif()
 
-add_compile_options(${ISP_HW_VERSION})
+add_compile_options("21")
 
 # ----------------------------------------------------------------------------
 # set property to classify library kinds
