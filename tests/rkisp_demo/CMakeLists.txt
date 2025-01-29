@@ -15,7 +15,7 @@ PROJECT(rkisp_demo)
 set(BUILROOT_BUILD_PROJECT true)
 #set(ENABLE_ASAN true)
 
-add_compile_options(${ISP_HW_VERSION})
+add_compile_options("-DISP_HW_V21")
 
 # ----------------------------------------------------------------------------
 # SET THE COMPILER PATH

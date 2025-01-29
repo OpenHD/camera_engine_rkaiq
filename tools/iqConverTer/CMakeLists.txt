@@ -72,7 +72,7 @@ include_directories(${ROOT_PROJ_DIR}/include/iq_parser_v2)
 include_directories(${ROOT_PROJ_DIR}/include/iq_parser_v2/j2s)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-add_compile_options(${ISP_HW_VERSION})
+add_compile_options("-DISP_HW_V21")
 
 #########################################################
 #         JSON <---> STRUCT  PREPROCESS                 #
@@ -80,7 +80,7 @@ add_compile_options(${ISP_HW_VERSION})
 add_custom_target(
     j2s_parser
     COMMAND ${CMAKE_C_COMPILER}
-    ${ROOT_PROJ_DIR}/include/iq_parser_v2/RkAiqCalibDbTypesV2.h -E -C -o .temp.h ${ISP_HW_VERSION}
+    ${ROOT_PROJ_DIR}/include/iq_parser_v2/RkAiqCalibDbTypesV2.h -E -C -o .temp.h "-DISP_HW_V21"
     -I${ROOT_PROJ_DIR}/include/common
     -I${ROOT_PROJ_DIR}/include/uAPI
     -I${ROOT_PROJ_DIR}/include/algos
