@@ -32,7 +32,7 @@ include_directories(${ROOT_PROJ_DIR}/include/iq_parser_v2)
 include_directories(${ROOT_PROJ_DIR}/include/iq_parser_v2/j2s)
 include_directories(${ROOT_PROJ_DIR}/)
 
-add_compile_options("-DISP_HW_V21")
+add_compile_options(${ISP_HW_VERSION})
 
 #########################################################
 #               HEADER MACRO PREPROCESS                 #
@@ -40,7 +40,7 @@ add_compile_options("-DISP_HW_V21")
 add_custom_target(
     j2s_parser
     COMMAND ${CMAKE_C_COMPILER}
-    ${ROOT_PROJ_DIR}/include/iq_parser_v2/RkAiqCalibDbTypesV2.h -E -C -o .temp.h "-DISP_HW_V21"
+    ${ROOT_PROJ_DIR}/include/iq_parser_v2/RkAiqCalibDbTypesV2.h -E -C -o .temp.h ${ISP_HW_VERSION}
     -I${ROOT_PROJ_DIR}/include/common
     -I${ROOT_PROJ_DIR}/include/iq_parser_v2
     -I${ROOT_PROJ_DIR}/include/iq_parser
@@ -58,7 +58,7 @@ add_custom_target(
 #########################################################
 add_custom_target(
     parser_tool
-    COMMAND gcc -DJ2S_ENABLE_DESC ${PROJECT_SOURCE_DIR}/src/parser.c -o parser "-DISP_HW_V21"
+    COMMAND gcc -DJ2S_ENABLE_DESC ${PROJECT_SOURCE_DIR}/src/parser.c -o parser ${ISP_HW_VERSION}
     -I${ROOT_PROJ_DIR}/include/common
     -I${ROOT_PROJ_DIR}/include/iq_parser_v2
     -I${ROOT_PROJ_DIR}/include/iq_parser_v2/j2s
@@ -81,7 +81,7 @@ add_dependencies(j2s j2s_parser)
 #########################################################
 add_custom_target(
     dump_tool
-    COMMAND gcc -DJ2S_ENABLE_DESC "-DISP_HW_V21" -o dump ${J2S_SRC} "-DISP_HW_V21"
+    COMMAND gcc -DJ2S_ENABLE_DESC ${ISP_HW_VERSION} -o dump ${J2S_SRC} ${ISP_HW_VERSION}
     ${PROJECT_SOURCE_DIR}/src/dump.c
     -I${ROOT_PROJ_DIR}/include/common
     -I${ROOT_PROJ_DIR}/include/iq_parser_v2
